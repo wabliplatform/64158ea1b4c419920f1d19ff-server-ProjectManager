@@ -1,0 +1,328 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: lampralexandros@gmail.com
+  description: This is a sample openApi document
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://wabli.netlify.app/
+  title: TempApi
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- description: local-host
+  url: http://localhost:8090/v1
+security:
+- {}
+tags:
+- description: not yet ready
+  name: task
+- description: not yet ready
+  name: employee
+paths:
+  /task:
+    post:
+      operationId: createtask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/task'
+        description: data to be created
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/task'
+          description: successful operation
+      summary: Creates the data
+      tags:
+      - task
+      x-eov-operation-handler: controllers/TaskController
+  /task/{taskId}:
+    delete:
+      operationId: deletetask
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+      summary: Delete the element
+      tags:
+      - task
+      x-eov-operation-handler: controllers/TaskController
+    get:
+      operationId: gettask
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/task'
+          description: successful operation
+      summary: Get the element
+      tags:
+      - task
+      x-eov-operation-handler: controllers/TaskController
+    put:
+      operationId: updatetask
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/task'
+        description: data to be updated
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/task'
+          description: successful operation
+      summary: Updates the element
+      tags:
+      - task
+      x-eov-operation-handler: controllers/TaskController
+  /task/getAll:
+    get:
+      operationId: getAlltask
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/task'
+                type: array
+          description: successful operation
+      summary: Get all the data
+      tags:
+      - task
+      x-method-getAll: "true"
+      x-eov-operation-handler: controllers/TaskController
+  /task/getByParams:
+    get:
+      operationId: getByParamstask
+      parameters:
+      - description: the query based on which the search is performed
+        explode: true
+        in: query
+        name: filter
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/task'
+                type: array
+          description: successful operation
+      summary: Get all the data based on user query
+      tags:
+      - task
+      x-method-get-by-params: "true"
+      x-eov-operation-handler: controllers/TaskController
+  /employee:
+    post:
+      operationId: createemployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employee'
+        description: data to be created
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee'
+          description: successful operation
+      summary: Creates the data
+      tags:
+      - employee
+      x-eov-operation-handler: controllers/EmployeeController
+  /employee/{employeeId}:
+    delete:
+      operationId: deleteemployee
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: employeeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+      summary: Delete the element
+      tags:
+      - employee
+      x-eov-operation-handler: controllers/EmployeeController
+    get:
+      operationId: getemployee
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: employeeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee'
+          description: successful operation
+      summary: Get the element
+      tags:
+      - employee
+      x-eov-operation-handler: controllers/EmployeeController
+    put:
+      operationId: updateemployee
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: employeeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employee'
+        description: data to be updated
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee'
+          description: successful operation
+      summary: Updates the element
+      tags:
+      - employee
+      x-eov-operation-handler: controllers/EmployeeController
+  /employee/getAll:
+    get:
+      operationId: getAllemployee
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/employee'
+                type: array
+          description: successful operation
+      summary: Get all the data
+      tags:
+      - employee
+      x-method-getAll: "true"
+      x-eov-operation-handler: controllers/EmployeeController
+  /employee/getByParams:
+    get:
+      operationId: getByParamsemployee
+      parameters:
+      - description: the query based on which the search is performed
+        explode: true
+        in: query
+        name: filter
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/employee'
+                type: array
+          description: successful operation
+      summary: Get all the data based on user query
+      tags:
+      - employee
+      x-method-get-by-params: "true"
+      x-eov-operation-handler: controllers/EmployeeController
+components:
+  schemas:
+    task:
+      example:
+        taskName: taskName
+        _id: _id
+        taskStatus: taskStatus
+        taskEmployee: ""
+      properties:
+        _id:
+          type: string
+        taskName:
+          type: string
+        taskStatus:
+          type: string
+        taskEmployee:
+          oneOf:
+          - $ref: '#/components/schemas/employee'
+          - type: string
+          x-one-of-name: employee
+      required:
+      - taskEmployee
+      - taskName
+      - taskStatus
+      type: object
+    employee:
+      example:
+        employeeName: employeeName
+        _id: _id
+      properties:
+        _id:
+          type: string
+        employeeName:
+          type: string
+      required:
+      - employeeName
+      type: object
